@@ -27,7 +27,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Allow the selection of a single day
 - [x] Single day selection is selected if clicked outside the popup
 - [x] Allow the selection of a date range
-- [ ] Datepicker closes automatically upon selection of dateTo in range
+- [x] Datepicker closes automatically upon selection of dateTo in range
 - [x] Format the displayed date in the input as eg 'Nov 8th 2023' for single and range
 - [ ] Sync default calendar state with query params on load `?fromDate=2024-01-01&toDate=2024-01-10`
 - [ ] Update query params on calendar date changes. Ensure this persists upon page reload

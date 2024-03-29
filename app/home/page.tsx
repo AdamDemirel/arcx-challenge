@@ -1,8 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
+import { format } from 'date-fns/format'
+
+// Toggle this to enable debug logs
+const DEBUG = false
 
 const labels = {
   inputLabel: 'Time Period',
@@ -28,8 +32,52 @@ const styles = {
   }
 }
 
+const dateFormat = 'MMM do yyyy'
+
+// TODO: type this as Date | null | ?range = [Date, ?Date]
+type DateValue = any
+
 const Home = () => {
-  const [showCalendar, setShowCalendar] = useState(false)
+  const [showCalendar, setShowCalendar] = useState<boolean>(false)
+
+  // 'Nov 8th 2023 - Dec 5th 2023'
+  const [selectedDate, setSelectedDate] = useState<DateValue>(null)
+
+  const handleDateChange = (dates: any) => {
+    setSelectedDate(dates)
+  }
+
+  const formattedStartDate = useMemo(() => {
+    const hasStartDate = !!selectedDate?.[0]
+    if (hasStartDate) return format(selectedDate?.[0], dateFormat)
+    return ''
+  }, [selectedDate])
+
+
+  const formattedEndDate = useMemo(() => {
+    const hasEndDate = !!selectedDate?.[1]
+    if (hasEndDate) return format(selectedDate?.[1], dateFormat)
+    return ''
+  }, [selectedDate])
+
+
+  const formattedInputDate = useMemo(() => {
+    if (!formattedStartDate && !formattedEndDate) return ''
+    if (formattedStartDate && !formattedEndDate) return formattedStartDate
+    if (formattedStartDate && formattedEndDate) {
+      return `${formattedStartDate} - ${formattedEndDate}`
+    }
+  }, [formattedStartDate, formattedEndDate])
+
+  // Logs all state and variables for debugging
+  useEffect(() => {
+    if (!DEBUG) return
+    console.log('showCalendar', showCalendar)
+    console.log('selectedDate', selectedDate)
+    console.log('formattedStartDate', formattedStartDate)
+    console.log('formattedEndDate', formattedEndDate)
+    console.log('formattedInputDate', formattedInputDate)
+  }, [formattedEndDate, formattedStartDate, selectedDate, showCalendar, formattedInputDate])
 
   return (
     <main className={styles.container}>
@@ -51,16 +99,24 @@ const Home = () => {
               name="time-period"
               id="time-period"
               className={styles.dateInput}
-              // value="2018-07-22"
-              value=''
-              placeholder='dd/mm/yyyy'
+              value={formattedInputDate}
+              placeholder='dd/mm/yyyy - dd/mm/yyyy'
               onFocus={() => setShowCalendar(true)}
               style={styles.customDateIcon}
+              readOnly
             />
           </div>
           {showCalendar && (
             <div className={styles.calendarWrapper}>
-              <Calendar />
+              <Calendar
+                // onClick={(value: any) => alert('new value' + value)}
+                defaultView='month'
+                minDetail='decade' // dont show centuries
+                selectRange // allows range selection
+                allowPartialRange // calls onChange on just startDate
+                minDate={new Date()} // disables dates before today
+                onChange={handleDateChange}
+              />
             </div>
           )}
         </form>

@@ -21,21 +21,21 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Setup a simple webpage in Next.js
 - [x] Default the homepage to /home as per spec and redirect from /
 - [x] Make the background page basic and white
-- [ ] Add a basic date input
-- [ ] Display a calendar popup the date input once clicked
-- [ ] Ensure the calendar popup is underneath the basic date input once display
-- [ ] Allow the selection of a single day
+- [x] Add a basic date input
+- [x] Display a calendar popup the date input once clicked
+- [x] Ensure the calendar popup is underneath the basic date input once display
+- [x] Allow the selection of a single day
 - [ ] Single day selection is selected if clicked outside the popup
-- [ ] Allow the selection of a date range
+- [x] Allow the selection of a date range
 - [ ] Datepicker closes automatically upon selection of dateTo in range
-- [ ] Format the displayed date in the input as eg 'Nov 8th 2023' for single and range
+- [x] Format the displayed date in the input as eg 'Nov 8th 2023' for single and range
 - [ ] Sync default calendar state with query params on load `?fromDate=2024-01-01&toDate=2024-01-10`
 - [ ] Update query params on calendar date changes. Ensure this persists upon page reload
 - [x] Connect and deploy to vercel via CICD
 
 ## Design
 - [ ] Use only tailwind for styling
-- [ ] Style the page layout as per figma
+- [x] Style the page layout as per figma
 - [ ] Style the date input as per figma
 - [ ] Style the day selector as per figma for:
   - [ ] selected start/end days
@@ -57,3 +57,4 @@ This project addresses the criteria in the lead frontend engineering technical c
 - Support for dark color scheme
 - Support for legacy browsers
 - Some colors Figma didn't match the tailwind theme - eg `#E9E9E9` for the input box border, so I used [Find the nearest tailwind colour](https://find-nearest-tailwind-colour.netlify.app/) to keep the designs consistent with the spec to use Tailwind
+- Disallowed typing in the date input to avoid all the formatting edge cases. Dates can only be selected with the calendar

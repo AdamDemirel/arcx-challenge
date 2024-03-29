@@ -25,7 +25,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Display a calendar popup the date input once clicked
 - [x] Ensure the calendar popup is underneath the basic date input once display
 - [x] Allow the selection of a single day
-- [ ] Single day selection is selected if clicked outside the popup
+- [x] Single day selection is selected if clicked outside the popup
 - [x] Allow the selection of a date range
 - [ ] Datepicker closes automatically upon selection of dateTo in range
 - [x] Format the displayed date in the input as eg 'Nov 8th 2023' for single and range

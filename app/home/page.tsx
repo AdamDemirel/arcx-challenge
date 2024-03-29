@@ -1,12 +1,13 @@
 'use client'
 
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { format } from 'date-fns/format'
+import { useClickedOutside } from '../hooks/useClickedOutside'
 
 // Toggle this to enable debug logs
-const DEBUG = false
+const DEBUG = true
 
 const labels = {
   inputLabel: 'Time Period',
@@ -39,9 +40,11 @@ type DateValue = any
 
 const Home = () => {
   const [showCalendar, setShowCalendar] = useState<boolean>(false)
-
   // 'Nov 8th 2023 - Dec 5th 2023'
   const [selectedDate, setSelectedDate] = useState<DateValue>(null)
+
+  const calendarRef = useRef(null)
+  const { clickedOutside } = useClickedOutside({ calendarRef, showCalendar })
 
   const handleDateChange = (dates: any) => {
     setSelectedDate(dates)
@@ -77,7 +80,16 @@ const Home = () => {
     console.log('formattedStartDate', formattedStartDate)
     console.log('formattedEndDate', formattedEndDate)
     console.log('formattedInputDate', formattedInputDate)
-  }, [formattedEndDate, formattedStartDate, selectedDate, showCalendar, formattedInputDate])
+    console.log('clickedOutside', clickedOutside)
+  }, [formattedEndDate, formattedStartDate, selectedDate, showCalendar, formattedInputDate, clickedOutside])
+
+  // closes the calendar if its open, and the user clicks outside,
+  // or if a 2nd date is selected
+  useEffect(() => {
+    const rangeSelected = selectedDate?.[0] && selectedDate?.[1]
+    if (showCalendar && clickedOutside) setShowCalendar(false)
+    // if (rangeSelected && showCalendar) setShowCalendar(false)
+  }, [clickedOutside, selectedDate, showCalendar])
 
   return (
     <main className={styles.container}>
@@ -116,6 +128,7 @@ const Home = () => {
                 allowPartialRange // calls onChange on just startDate
                 minDate={new Date()} // disables dates before today
                 onChange={handleDateChange}
+                inputRef={calendarRef}
               />
             </div>
           )}

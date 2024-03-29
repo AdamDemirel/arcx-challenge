@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // This config redirects/defaults the root / to /home as per spec
   async redirects() {
     return [
       {

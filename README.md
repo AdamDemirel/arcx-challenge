@@ -4,15 +4,16 @@ This project addresses the criteria in the lead frontend engineering technical c
 1. Clone the repo
 2. Run the dev server with `npm run dev`. Runs at [http://localhost:3000](http://localhost:3000)
 
-# Libraries
-- Next.js for boilerplate code structure and React setup
+# Libraries / Tools
+- [Next.js](https://nextjs.org/) for boilerplate code structure and React setup
+- [tailwindcss](https://tailwindcss.com/) for styling via helper classes
 
 # Requirements / Steps Undertaken
 
 ### Functionality
 - [x] Setup a simple webpage in Next.js
 - [x] Default the homepage to /home as per spec and redirect from /
-- [ ] Make the background page basic and white
+- [x] Make the background page basic and white
 - [ ] Add a basic date input
 - [ ] Display a calendar popup the date input once clicked
 - [ ] Ensure the calendar popup is underneath the basic date input once display
@@ -44,3 +45,6 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [ ] Make sure necessary types are in place
 - [ ] Decouple any mixed concerns and decompose complex components
 - [ ] Comment any necessary code
+
+# Noted Exclusions
+- Support for dark color scheme

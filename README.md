@@ -11,6 +11,9 @@ This project addresses the criteria in the lead frontend engineering technical c
 # Libraries / Tools
 - [Next.js](https://nextjs.org/) for boilerplate code structure and React setup
 - [tailwindcss](https://tailwindcss.com/) for styling via helper classes
+- [react-calendar](https://www.npmjs.com/package/react-calendar) for react calendar UI
+- [date-fns](https://date-fns.org/) for date utilities
+- [headlessui](https://headlessui.com/) for transitions
 
 # Requirements / Steps Undertaken
 
@@ -28,7 +31,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [ ] Format the displayed date in the input as eg 'Nov 8th 2023' for single and range
 - [ ] Sync default calendar state with query params on load `?fromDate=2024-01-01&toDate=2024-01-10`
 - [ ] Update query params on calendar date changes. Ensure this persists upon page reload
-- [ ] Connect and deploy to vercel via CICD
+- [x] Connect and deploy to vercel via CICD
 
 ## Design
 - [ ] Use only tailwind for styling
@@ -52,3 +55,5 @@ This project addresses the criteria in the lead frontend engineering technical c
 
 # Noted Exclusions
 - Support for dark color scheme
+- Support for legacy browsers
+- Some colors Figma didn't match the tailwind theme - eg `#E9E9E9` for the input box border, so I used [Find the nearest tailwind colour](https://find-nearest-tailwind-colour.netlify.app/) to keep the designs consistent with the spec to use Tailwind

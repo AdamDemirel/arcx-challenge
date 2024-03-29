@@ -5,4 +5,6 @@
 body {
   color: black;
   background: white;
+  user-select: none !important;
+
 }

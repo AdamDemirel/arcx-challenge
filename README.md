@@ -1,3 +1,7 @@
+The live demo lives at [https://arcx-challenge.vercel.app/](https://arcx-challenge.vercel.app/)
+
+# About
+
 This project addresses the criteria in the lead frontend engineering technical challenge for [arcx](https://www.arcxanalytics.com/)
 
 # Project Setup Steps

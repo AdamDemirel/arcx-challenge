@@ -29,8 +29,8 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Allow the selection of a date range
 - [x] Datepicker closes automatically upon selection of dateTo in range
 - [x] Format the displayed date in the input as eg 'Nov 8th 2023' for single and range
-- [ ] Sync default calendar state with query params on load `?fromDate=2024-01-01&toDate=2024-01-10`
-- [ ] Update query params on calendar date changes. Ensure this persists upon page reload
+- [x] Sync default calendar state with query params on load `?fromDate=2024-01-01&toDate=2024-01-10`
+- [x] Update query params on calendar date changes. Ensure this persists upon page reload
 - [x] Connect and deploy to vercel via CICD
 
 ## Design
@@ -52,9 +52,13 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [ ] Make sure necessary types are in place
 - [ ] Decouple any mixed concerns and decompose complex components
 - [ ] Comment any necessary code
+- [ ] If fromDate in params is before today, display error
+- [ ] Fix TODOs
 
 # Noted Exclusions
 - Support for dark color scheme
 - Support for legacy browsers
 - Some colors Figma didn't match the tailwind theme - eg `#E9E9E9` for the input box border, so I used [Find the nearest tailwind colour](https://find-nearest-tailwind-colour.netlify.app/) to keep the designs consistent with the spec to use Tailwind
 - Disallowed typing in the date input to avoid all the formatting edge cases. Dates can only be selected with the calendar
+- Invalid dates can be passed into params. eg toDate before fromDate
+- If only toDate passed to params, no error message displayed

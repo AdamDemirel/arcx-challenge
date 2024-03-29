@@ -12,7 +12,7 @@ const labels = {
 const Home = () => {
   const {
     showCalendar,
-    formattedInputDate,
+    formattedBtnDate,
     toggleCalendar,
     handleDateChange,
     calendarRef,
@@ -21,29 +21,20 @@ const Home = () => {
   return (
     <main className={styles.container}>
       <div className={styles.formWrapper}>
-        <form className={styles.form}>
-          <label
-            htmlFor="time-period"
-            className={styles.dateLabel}
-          >
+        <div className={styles.form}>
+          <p className={styles.dateLabel}>
             {labels.inputLabel}
-          </label>
-
+          </p>
           <div
-            className={styles.inputWrapper(showCalendar)}
+            className={styles.btnWrapper(showCalendar)}
           >
-            {/* Using type text instead of date since the input is merely reflective of the calendar and no need for native date functionality */}
-            <input
-              type="text"
-              name="time-period"
-              id="time-period"
-              className={styles.dateInput}
-              value={formattedInputDate}
-              placeholder='dd/mm/yyyy - dd/mm/yyyy'
+            <button
+              className={styles.dateInput({ hasDate: !!formattedBtnDate })}
               onClick={toggleCalendar}
               style={styles.customDateIcon}
-              readOnly
-            />
+            >
+              {formattedBtnDate || 'from - to'}
+            </button>
           </div>
           {showCalendar && (
             <div className={styles.calendarWrapper}>
@@ -59,7 +50,7 @@ const Home = () => {
               />
             </div>
           )}
-        </form>
+        </div>
       </div>
     </main>
   );

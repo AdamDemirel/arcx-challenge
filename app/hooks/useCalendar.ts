@@ -2,104 +2,119 @@ import { useClickedOutside } from './useClickedOutside'
 import { useMemo, useState, useEffect, useRef, useCallback } from 'react'
 import { format } from 'date-fns/format'
 import { parse } from 'date-fns/parse'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 // Toggle this to enable debug logs
 const DEBUG = true
 
-const INPUT_DATE_FORMAT = 'MMM do yyyy'
+// See https://date-fns.org/docs/Getting-Started
+const BTN_DATE_FORMAT = 'MMM do yyyy'
 const PARAM_DATE_FORMAT = 'yyyy-MM-dd'
 
-// TODO: type this as Date | null | ?range = [Date, ?Date]
-type DateValue = any
+const PARAMS = {
+  FROM: 'fromDate',
+  TO: 'toDate'
+}
+
+type DateValue = Array<null | Date>
 
 const useCalendar = () => {
-  const searchParams = useSearchParams()
-  const fromDateParam = searchParams.get('fromDate')
-  const toDateParam = searchParams.get('toDate')
-
   const [showCalendar, setShowCalendar] = useState<boolean>(false)
-  // 'Nov 8th 2023 - Dec 5th 2023'
-  const [selectedDate, setSelectedDate] = useState<DateValue>(null)
+  const [selectedDates, setSelectedDates] = useState<DateValue>([null, null])
 
   const calendarRef = useRef(null)
+  const router = useRouter()
+  const pathname = usePathname()
   const { clickedOutside } = useClickedOutside({ calendarRef, showCalendar })
 
-  const handleDateChange = (dates: any) => {
-    setSelectedDate(dates)
-  }
+  const searchParams = useSearchParams()
+  const fromDateParam = searchParams.get(PARAMS.FROM)
+  const toDateParam = searchParams.get(PARAMS.TO)
 
-  const formattedStartDate = useMemo(() => {
-    const hasStartDate = !!selectedDate?.[0]
-    if (hasStartDate) return format(selectedDate?.[0], INPUT_DATE_FORMAT)
+  // Updates state and searchParams with newly selected dates
+  const handleDateChange = useCallback((newDates: any) => {
+    setSelectedDates(newDates)
+
+    const newSearchParams = new URLSearchParams(searchParams?.toString())
+    const paramFormattedStartDate: string | null = newDates?.[0] ? format(newDates?.[0], PARAM_DATE_FORMAT) : null
+    const paramFormattedEndDate: string | null = newDates?.[1] ? format(newDates?.[1], PARAM_DATE_FORMAT) : null
+
+    paramFormattedStartDate ? newSearchParams.set(PARAMS.FROM, paramFormattedStartDate) : newSearchParams.delete(PARAMS.FROM)
+    paramFormattedEndDate ? newSearchParams.set(PARAMS.TO, paramFormattedEndDate) : newSearchParams.delete(PARAMS.TO)
+
+    router.push(`${pathname}?${newSearchParams?.toString()}`)
+  }, [ pathname, router, searchParams])
+
+  const toggleCalendar = useCallback(() => setShowCalendar(!showCalendar), [showCalendar])
+
+  const btnFormattedStartDate = useMemo(() => {
+    const hasStartDate = !!selectedDates?.[0]
+    // @ts-ignore-next-line
+    if (hasStartDate) return format(selectedDates?.[0], BTN_DATE_FORMAT)
     return ''
-  }, [selectedDate])
+  }, [selectedDates])
 
-
-  const formattedEndDate = useMemo(() => {
-    const hasEndDate = !!selectedDate?.[1]
-    if (hasEndDate) return format(selectedDate?.[1], INPUT_DATE_FORMAT)
+  const btnFormattedEndDate = useMemo(() => {
+    const hasEndDate = !!selectedDates?.[1]
+     // @ts-ignore-next-line
+    if (hasEndDate) return format(selectedDates?.[1], BTN_DATE_FORMAT)
     return ''
-  }, [selectedDate])
+  }, [selectedDates])
 
-
-  const formattedInputDate = useMemo(() => {
-    if (!formattedStartDate && !formattedEndDate) return ''
-    if (formattedStartDate && !formattedEndDate) return formattedStartDate
-    if (formattedStartDate && formattedEndDate) {
-      return `${formattedStartDate} - ${formattedEndDate}`
+  const formattedBtnDate = useMemo(() => {
+    if (!btnFormattedStartDate && !btnFormattedEndDate) return ''
+    if (btnFormattedStartDate && !btnFormattedEndDate) return btnFormattedStartDate
+    if (btnFormattedStartDate && btnFormattedEndDate) {
+      return `${btnFormattedStartDate} - ${btnFormattedEndDate}`
     }
-  }, [formattedStartDate, formattedEndDate])
+  }, [btnFormattedStartDate, btnFormattedEndDate])
 
-
-  const toggleCalendar = useCallback(() => {
-    setShowCalendar(!showCalendar)
-  }, [showCalendar])
-
+  // Reads the values from searchParams and syncs to btn on first load
   useEffect(() => {
     // TODO: make sure the date string params are in the accepted format
-    const newDates: Array<null | Date> = [null, null]
+    const newDates: DateValue = [null, null]
 
     if (fromDateParam) {
-      newDates[0] = parse(fromDateParam, PARAM_DATE_FORMAT, new Date())
+      const parsedStartDate = parse(fromDateParam, PARAM_DATE_FORMAT, new Date())
+      newDates[0] = parsedStartDate
     }
 
     if (toDateParam) {
-      newDates[1] = parse(toDateParam, PARAM_DATE_FORMAT, new Date())
+      const parsedEndDate = parse(toDateParam, PARAM_DATE_FORMAT, new Date())
+      newDates[1] = parsedEndDate
     }
 
-    setSelectedDate(newDates)
+    setSelectedDates(newDates)
   }, [fromDateParam, toDateParam])
 
   // Logs all state and variables for debugging
   useEffect(() => {
     if (!DEBUG) return
     console.log('showCalendar', showCalendar)
-    console.log('selectedDate', selectedDate)
-    console.log('formattedStartDate', formattedStartDate)
-    console.log('formattedEndDate', formattedEndDate)
-    console.log('formattedInputDate', formattedInputDate)
+    console.log('selectedDates', selectedDates)
+    console.log('btnFormattedStartDate', btnFormattedStartDate)
+    console.log('btnFormattedEndDate', btnFormattedEndDate)
+    console.log('formattedBtnDate', formattedBtnDate)
     console.log('clickedOutside', clickedOutside)
     console.log('fromDateParam', fromDateParam)
     console.log('toDateParam', toDateParam)
-  }, [formattedEndDate, formattedStartDate, selectedDate, showCalendar, formattedInputDate, clickedOutside, fromDateParam, toDateParam])
+  }, [btnFormattedEndDate, btnFormattedStartDate, selectedDates, showCalendar, formattedBtnDate, clickedOutside, fromDateParam, toDateParam])
 
   // closes the calendar if its open, and the user clicks outside,
-  // or if a 2nd date is selected
   useEffect(() => {
     if (showCalendar && clickedOutside) setShowCalendar(false)
-  }, [clickedOutside, selectedDate, showCalendar])
+  }, [clickedOutside, showCalendar])
 
   // Hides the calendar when the second date is selected
   useEffect(() => {
-    const nonNullDates = selectedDate?.filter((date: any) => !!date)
+    const nonNullDates = selectedDates?.filter((date: any) => !!date)
     const rangeIsSelected = nonNullDates?.length === 2
     if (rangeIsSelected) setShowCalendar(false)
-  }, [selectedDate])
+  }, [selectedDates])
 
   return {
     showCalendar,
-    formattedInputDate,
+    formattedBtnDate,
     toggleCalendar,
     handleDateChange,
     calendarRef,

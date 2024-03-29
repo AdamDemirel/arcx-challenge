@@ -11,7 +11,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 
 ### Functionality
 - [x] Setup a simple webpage in Next.js
-- [ ] Default the homepage to /home as per spec and redirect from /
+- [x] Default the homepage to /home as per spec and redirect from /
 - [ ] Make the background page basic and white
 - [ ] Add a basic date input
 - [ ] Display a calendar popup the date input once clicked

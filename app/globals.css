@@ -56,6 +56,10 @@ body {
 
         @apply w-4 h-4 rotate-[270deg] inline-block ml-2 !important;
       }
+
+      &:disabled {
+        @apply bg-white cursor-not-allowed !important;
+      }
     }
 
     /* The day label for sun-mon */
@@ -102,9 +106,9 @@ body {
         }
       }
 
-      &.react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeStart),
-      &.react-calendar__tile--rangeEnd.react-calendar__tile--hover:not(.react-calendar__tile--rangeStart),
-      &.react-calendar__tile--hoverEnd:not(.react-calendar__tile--rangeStart) {
+      &.react-calendar__month-view__days__day.react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeStart),
+      &.react-calendar__month-view__days__day.react-calendar__tile--rangeEnd.react-calendar__tile--hover:not(.react-calendar__tile--rangeStart),
+      &.react-calendar__month-view__days__day.react-calendar__tile--hoverEnd:not(.react-calendar__tile--rangeStart) {
         @apply rounded-e-2xl bg-arcx-purple-100 !important;
 
         abbr {
@@ -139,17 +143,30 @@ body {
         &:hover {
           @apply bg-arcx-purple-100 !important;
         }
+
+        &.react-calendar__tile--active {
+          @apply bg-white text-arcx-gray-600 !important;
+        }
+
+        &.react-calendar__tile--hover {
+          @apply bg-arcx-purple-100 !important;
+        }
       }
 
+      /* The disabled years and months */
+      &.react-calendar__decade-view__years__year:disabled,
       &.react-calendar__year-view__months__month:disabled {
         @apply bg-white text-arcx-gray-600 cursor-not-allowed !important;
       }
 
-      &.react-calendar__year-view__months__month.react-calendar__tile--hasActive {
+      /* The selected year and month */
+      &.react-calendar__year-view__months__month.react-calendar__tile--hasActive,
+      &.react-calendar__decade-view__years__year.react-calendar__tile--hasActive {
         @apply bg-arcx-purple-500 text-white !important;
       }
 
       /* Selected tile */
+      &.react-calendar__tile--range,
       &.react-calendar__month-view__days__day.react-calendar__tile--range abbr {
         @apply bg-arcx-purple-100 text-arcx-gray-600 !important;
       }
@@ -160,5 +177,3 @@ body {
     }
   }
 }
-
-/* react-calendar__tile--range react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds react-calendar__month-view__days__day */

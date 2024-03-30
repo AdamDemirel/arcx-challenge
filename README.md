@@ -38,13 +38,13 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Style the page layout as per figma
 - [x] Style the button input as per figma
   - [x] Ensure the input is a button with a hand displayed when hovering (dev mode comment)
-- [ ] Style the day selector as per figma for:
-  - [ ] selected start/end days
-  - [ ] selected range
-  - [ ] past dates, and
-  - [ ] out of range dates
-- [ ] Style the year selector as per figma
-- [ ] Style the month selector as per figma
+- [x] Style the day selector as per figma for:
+  - [x] selected start/end days
+  - [x] selected range
+  - [x] past dates, and
+  - [x] out of range dates
+- [x] Style the year selector as per figma
+- [x] Style the month selector as per figma
 - [ ] Add delight to calendar - ie transitions/motion on date selection, calendar popup, and page load
 
 ## QA

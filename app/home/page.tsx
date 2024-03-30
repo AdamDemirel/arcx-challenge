@@ -4,10 +4,23 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { useCalendar } from "../hooks/useCalendar"
 import { styles } from '../styles/calendar'
+import Image from 'next/image'
 
 const labels = {
   inputLabel: 'Time Period',
 }
+
+const NextArrow = () => (
+  <Image src='/arrow.svg' alt='next arrow' width={16} height={16} style={{ transform: 'rotate(180deg)'}} />
+)
+
+const PrevArrow = () => (
+  <Image src='/arrow.svg' alt='prev arrow' width={16} height={16}  />
+)
+
+const DownArrow = () => (
+  <Image src='/arrow.svg' alt='down arrow' width={16} height={16} style={{ transform: 'rotate(90deg)'}} />
+)
 
 const Home = () => {
   const {
@@ -18,6 +31,7 @@ const Home = () => {
     calendarRef,
     shortWeekydayFormatter,
     monthFormatter,
+    selectedDates,
   } = useCalendar()
 
   return (
@@ -42,6 +56,8 @@ const Home = () => {
             <div className={styles.calendarWrapper}>
               <Calendar
                 defaultView='month'
+                // @ts-ignore-next-line
+                value={selectedDates}
                 minDetail='decade' // dont show centuries
                 selectRange // allows range selection
                 allowPartialRange // calls onChange on just startDate
@@ -51,6 +67,10 @@ const Home = () => {
                 formatMonth={monthFormatter}
                 formatShortWeekday={shortWeekydayFormatter}
                 calendarType='gregory' // starts cal at sun > mon
+                next2Label={null} // hide next year
+                prev2Label={null} // hide prev year
+                nextLabel={<NextArrow />}
+                prevLabel={<PrevArrow />}
               />
             </div>
           )}

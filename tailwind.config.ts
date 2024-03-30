@@ -20,8 +20,11 @@ const config: Config = {
       colors: {
         arcx: {
           gray: {
+            100: '#1B1B1B',
+            200: '#F1F1F1',
             300: '#E6E6E6',
             400: '#E9E9E9',
+            450: '#8F8F8F',
             500: '#666666',
             600: '#070413',
           },
@@ -30,6 +33,9 @@ const config: Config = {
             500: '#6514D7'
           }
         }
+      },
+      fontFamily: {
+        inter: ['Inter', 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"']
       }
     }
   },

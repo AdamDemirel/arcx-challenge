@@ -1,0 +1,10 @@
+<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Arrow Left" clip-path="url(#clip0_56_49)">
+<path id="Vector" d="M10.0605 3.22003L5.71388 7.5667C5.20055 8.08003 5.20055 8.92003 5.71388 9.43336L10.0605 13.78" stroke="#666666" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_56_49">
+<rect width="16" height="16" fill="white" transform="translate(16 16.5) rotate(180)"/>
+</clipPath>
+</defs>
+</svg>

@@ -19,7 +19,7 @@ const PARAMS = {
 type DateValue = Array<null | Date>
 
 const useCalendar = () => {
-  const [showCalendar, setShowCalendar] = useState<boolean>(true)
+  const [showCalendar, setShowCalendar] = useState<boolean>(false)
   const [selectedDates, setSelectedDates] = useState<DateValue>([null, null])
 
   const calendarRef = useRef(null)
@@ -117,6 +117,7 @@ const useCalendar = () => {
   }, [selectedDates])
 
   return {
+    selectedDates,
     showCalendar,
     formattedBtnDate,
     toggleCalendar,

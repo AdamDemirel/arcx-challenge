@@ -71,6 +71,8 @@ const Home = () => {
                 prev2Label={null} // hide prev year
                 nextLabel={<NextArrow />}
                 prevLabel={<PrevArrow />}
+                // tileContent do custom date tile comp here for selected month
+                //
               />
             </div>
           )}

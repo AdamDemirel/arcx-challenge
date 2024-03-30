@@ -76,6 +76,13 @@ const useCalendar = () => {
 
   const monthFormatter = useCallback((locale: any, date: any) => format(date, 'LLL'), [])
 
+  // This mapping is needed since the calendar either accepts a single date value or an array of 2 full. breaks if array of 1 value and 1 null
+  const calendarValue = useMemo(() => {
+    if (nonNullDates?.length === 2) return selectedDates
+    if (nonNullDates?.length === 1) return selectedDates?.[0]
+    return null
+  }, [nonNullDates, selectedDates])
+
   // Reads the values from searchParams and syncs to btn on first load
   useEffect(() => {
     // TODO: make sure the date string params are in the accepted format
@@ -120,7 +127,7 @@ const useCalendar = () => {
   }, [selectedDates, nonNullDates])
 
   return {
-    selectedDates,
+    calendarValue,
     showCalendar,
     formattedBtnDate,
     toggleCalendar,

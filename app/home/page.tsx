@@ -32,7 +32,7 @@ const Home = () => {
     calendarRef,
     shortWeekydayFormatter,
     monthFormatter,
-    selectedDates,
+    calendarValue,
     isLoading,
   } = useCalendar()
 
@@ -59,7 +59,7 @@ const Home = () => {
               <Calendar
                 defaultView='month'
                 // @ts-ignore-next-line
-                value={selectedDates}
+                value={calendarValue}
                 minDetail='decade' // dont show centuries
                 selectRange // allows range selection
                 allowPartialRange // calls onChange on just startDate
@@ -74,7 +74,6 @@ const Home = () => {
                 nextLabel={<NextArrow />}
                 prevLabel={<PrevArrow />}
                 // tileContent do custom date tile comp here for selected month
-                //
               />
             </div>
           )}

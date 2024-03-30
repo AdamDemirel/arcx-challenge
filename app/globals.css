@@ -26,6 +26,10 @@ body {
       @apply h-auto p-2 mb-2 !important;
     }
 
+    .react-calendar__navigation__arrow:disabled {
+      @apply hidden !important;
+    }
+
     .react-calendar__navigation__next-button,
     .react-calendar__navigation__prev-button {
       @apply min-w-0 !important;
@@ -88,9 +92,9 @@ body {
         @apply bg-white !important;
       }
 
-      &.react-calendar__tile--rangeStart,
-      &.react-calendar__tile--rangeStart.react-calendar__tile--hover,
-      &.react-calendar__tile--hoverStart {
+      &.react-calendar__tile--rangeStart.react-calendar__month-view__days__day,
+      &.react-calendar__tile--rangeStart.react-calendar__tile--hover.react-calendar__month-view__days__day,
+      &.react-calendar__tile--hoverStart.react-calendar__month-view__days__day {
         @apply rounded-s-2xl bg-arcx-purple-100 !important;
 
         abbr {
@@ -137,21 +141,20 @@ body {
         }
       }
 
-      /* &.react-calendar__year-view__months__month {
-        @apply bg-arcx-purple-500;
-      } */
+      &.react-calendar__year-view__months__month:disabled {
+        @apply bg-white text-arcx-gray-600 cursor-not-allowed !important;
+      }
 
-      /* Month tile */
-      /* &.react-calendar__year-view__months__month {
-        {}
-      } */
+      &.react-calendar__year-view__months__month.react-calendar__tile--hasActive {
+        @apply bg-arcx-purple-500 text-white !important;
+      }
 
       /* Selected tile */
-      &.react-calendar__tile--range abbr {
+      &.react-calendar__month-view__days__day.react-calendar__tile--range abbr {
         @apply bg-arcx-purple-100 text-arcx-gray-600 !important;
       }
 
-      &.react-calendar__tile--hover {
+      &.react-calendar__month-view__days__day.react-calendar__tile--hover {
         @apply bg-arcx-purple-100 !important;
       }
     }

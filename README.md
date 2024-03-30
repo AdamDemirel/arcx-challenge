@@ -36,7 +36,8 @@ This project addresses the criteria in the lead frontend engineering technical c
 ## Design
 - [ ] Use only tailwind for styling
 - [x] Style the page layout as per figma
-- [ ] Style the button input as per figma
+- [x] Style the button input as per figma
+  - [x] Ensure the input is a button with a hand displayed when hovering (dev mode comment)
 - [ ] Style the day selector as per figma for:
   - [ ] selected start/end days
   - [ ] selected range

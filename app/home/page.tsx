@@ -4,7 +4,6 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { useCalendar } from "../hooks/useCalendar"
 import { styles } from '../styles/calendar'
-import { Suspense } from 'react'
 
 const labels = {
   inputLabel: 'Time Period',
@@ -19,6 +18,8 @@ const Home = () => {
     calendarRef,
   } = useCalendar()
 
+  console.log('showCalendar', showCalendar)
+
   return (
     <main className={styles.container}>
       <div className={styles.formWrapper}>
@@ -30,7 +31,7 @@ const Home = () => {
             className={styles.btnWrapper(showCalendar)}
           >
             <button
-              className={styles.dateInput({ hasDate: !!formattedBtnDate })}
+              className={styles.dateBtn({ hasDate: !!formattedBtnDate })}
               onClick={toggleCalendar}
               style={styles.customDateIcon}
             >

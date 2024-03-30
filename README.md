@@ -64,3 +64,4 @@ This project addresses the criteria in the lead frontend engineering technical c
 - Disallowed typing in the date button area to avoid all the formatting edge cases. Dates can only be selected with the calendar
 - Invalid dates can be passed into params. eg toDate before fromDate
 - If only toDate passed to params, no error message displayed
+- Ignored date localisation

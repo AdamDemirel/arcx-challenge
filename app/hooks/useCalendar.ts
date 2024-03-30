@@ -19,7 +19,7 @@ const PARAMS = {
 type DateValue = Array<null | Date>
 
 const useCalendar = () => {
-  const [showCalendar, setShowCalendar] = useState<boolean>(false)
+  const [showCalendar, setShowCalendar] = useState<boolean>(true)
   const [selectedDates, setSelectedDates] = useState<DateValue>([null, null])
 
   const calendarRef = useRef(null)
@@ -68,6 +68,10 @@ const useCalendar = () => {
       return `${btnFormattedStartDate} - ${btnFormattedEndDate}`
     }
   }, [btnFormattedStartDate, btnFormattedEndDate])
+
+  const shortWeekydayFormatter = useCallback((locale: any, date: any) => format(date, 'ccccc'), [])
+
+  const monthFormatter = useCallback((locale: any, date: any) => format(date, 'LLL'), [])
 
   // Reads the values from searchParams and syncs to btn on first load
   useEffect(() => {
@@ -118,6 +122,8 @@ const useCalendar = () => {
     toggleCalendar,
     handleDateChange,
     calendarRef,
+    shortWeekydayFormatter,
+    monthFormatter,
   }
 }
 

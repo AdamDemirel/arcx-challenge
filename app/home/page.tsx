@@ -16,9 +16,9 @@ const Home = () => {
     toggleCalendar,
     handleDateChange,
     calendarRef,
+    shortWeekydayFormatter,
+    monthFormatter,
   } = useCalendar()
-
-  console.log('showCalendar', showCalendar)
 
   return (
     <main className={styles.container}>
@@ -41,7 +41,6 @@ const Home = () => {
           {showCalendar && (
             <div className={styles.calendarWrapper}>
               <Calendar
-                // onClick={(value: any) => alert('new value' + value)}
                 defaultView='month'
                 minDetail='decade' // dont show centuries
                 selectRange // allows range selection
@@ -49,6 +48,9 @@ const Home = () => {
                 minDate={new Date()} // disables dates before today
                 onChange={handleDateChange}
                 inputRef={calendarRef}
+                formatMonth={monthFormatter}
+                formatShortWeekday={shortWeekydayFormatter}
+                calendarType='gregory' // starts cal at sun > mon
               />
             </div>
           )}

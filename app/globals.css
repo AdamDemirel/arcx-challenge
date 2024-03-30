@@ -7,3 +7,14 @@ body {
   background: white;
   user-select: none !important;
 }
+
+/*
+  Custom styling overrides for react-calendar popup
+  utilising the tailwind tokens. see
+  https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+*/
+@layer components {
+  .react-calendar.react-calendar--selectRange {
+    @apply pt-2 pb-4 px-4 border border-arcx-gray-300 rounded-lg;
+  }
+}

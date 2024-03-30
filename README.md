@@ -54,7 +54,8 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [ ] Decouple any mixed concerns and decompose complex components + hook logic
 - [ ] Comment any necessary code
 - [ ] If fromDate in params is before today, display error
-- [ ] If params are set and no state values synced yet, display loader on button
+- [x] If params are set and no state values synced yet, display loader on button
+- [ ] Fix console errors/warnings
 - [ ] Fix TODOs
 
 # Noted Exclusions
@@ -65,3 +66,4 @@ This project addresses the criteria in the lead frontend engineering technical c
 - Invalid dates can be passed into params. eg toDate before fromDate
 - If only toDate passed to params, no error message displayed
 - Ignored date localisation
+- No hover states on calendar

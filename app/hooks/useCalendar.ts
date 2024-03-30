@@ -19,17 +19,20 @@ const PARAMS = {
 type DateValue = Array<null | Date>
 
 const useCalendar = () => {
+  const searchParams = useSearchParams()
+  const fromDateParam = searchParams.get(PARAMS.FROM)
+  const toDateParam = searchParams.get(PARAMS.TO)
+
   const [showCalendar, setShowCalendar] = useState<boolean>(false)
   const [selectedDates, setSelectedDates] = useState<DateValue>([null, null])
+  const [isLoading, setIsLoading] = useState(!!fromDateParam || !!toDateParam)
 
   const calendarRef = useRef(null)
   const router = useRouter()
   const pathname = usePathname()
   const { clickedOutside } = useClickedOutside({ calendarRef, showCalendar })
 
-  const searchParams = useSearchParams()
-  const fromDateParam = searchParams.get(PARAMS.FROM)
-  const toDateParam = searchParams.get(PARAMS.TO)
+  const nonNullDates = useMemo(() => selectedDates?.filter((date: any) => !!date), [selectedDates])
 
   // Updates state and searchParams with newly selected dates
   const handleDateChange = useCallback((newDates: any) => {
@@ -89,6 +92,7 @@ const useCalendar = () => {
     }
 
     setSelectedDates(newDates)
+    setIsLoading(false)
   }, [fromDateParam, toDateParam])
 
   // Logs all state and variables for debugging
@@ -111,10 +115,9 @@ const useCalendar = () => {
 
   // Hides the calendar when the second date is selected
   useEffect(() => {
-    const nonNullDates = selectedDates?.filter((date: any) => !!date)
     const rangeIsSelected = nonNullDates?.length === 2
     if (rangeIsSelected) setShowCalendar(false)
-  }, [selectedDates])
+  }, [selectedDates, nonNullDates])
 
   return {
     selectedDates,
@@ -125,6 +128,7 @@ const useCalendar = () => {
     calendarRef,
     shortWeekydayFormatter,
     monthFormatter,
+    isLoading,
   }
 }
 

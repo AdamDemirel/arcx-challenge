@@ -5,6 +5,7 @@ import 'react-calendar/dist/Calendar.css'
 import { useCalendar } from "../hooks/useCalendar"
 import { styles } from '../styles/calendar'
 import Image from 'next/image'
+import { Spinner } from '../components/Spinner'
 
 const labels = {
   inputLabel: 'Time Period',
@@ -32,6 +33,7 @@ const Home = () => {
     shortWeekydayFormatter,
     monthFormatter,
     selectedDates,
+    isLoading,
   } = useCalendar()
 
   return (
@@ -49,7 +51,7 @@ const Home = () => {
               onClick={toggleCalendar}
               style={styles.customDateIcon}
             >
-              {formattedBtnDate || 'from - to'}
+              {isLoading ? <Spinner /> : formattedBtnDate || 'from - to'}
             </button>
           </div>
           {showCalendar && (

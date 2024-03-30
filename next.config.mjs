@@ -10,6 +10,11 @@ const nextConfig = {
       },
     ]
   },
+  // Disables unecessary performance optimization for challenge
+  // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 }
 
 export default nextConfig

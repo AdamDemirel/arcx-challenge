@@ -4,6 +4,7 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { useCalendar } from "../hooks/useCalendar"
 import { styles } from '../styles/calendar'
+import { Suspense } from 'react'
 
 const labels = {
   inputLabel: 'Time Period',

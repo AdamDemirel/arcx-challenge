@@ -2,7 +2,7 @@ The live demo lives at [https://arcx-challenge.vercel.app/](https://arcx-challen
 
 # About
 
-This project addresses the criteria in the lead frontend engineering technical challenge for [arcx](https://www.arcxanalytics.com/)
+This project addresses the criteria in the lead frontend engineering technical challenge for [ARCx](https://www.arcxanalytics.com/)
 
 # Project Setup Steps
 1. Clone the repo
@@ -36,7 +36,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 ## Design
 - [ ] Use only tailwind for styling
 - [x] Style the page layout as per figma
-- [ ] Style the date input as per figma
+- [ ] Style the button input as per figma
 - [ ] Style the day selector as per figma for:
   - [ ] selected start/end days
   - [ ] selected range
@@ -50,15 +50,16 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [ ] Double check all stylistic changes - colors, bgColors, spacing, fontSizes, opacity, layouts, etc
 - [ ] Try to break and find edge cases in functionality
 - [ ] Make sure necessary types are in place
-- [ ] Decouple any mixed concerns and decompose complex components
+- [ ] Decouple any mixed concerns and decompose complex components + hook logic
 - [ ] Comment any necessary code
 - [ ] If fromDate in params is before today, display error
+- [ ] If params are set and no state values synced yet, display loader on button
 - [ ] Fix TODOs
 
 # Noted Exclusions
 - Support for dark color scheme
 - Support for legacy browsers
-- Some colors Figma didn't match the tailwind theme - eg `#E9E9E9` for the input box border, so I used [Find the nearest tailwind colour](https://find-nearest-tailwind-colour.netlify.app/) to keep the designs consistent with the spec to use Tailwind
-- Disallowed typing in the date input to avoid all the formatting edge cases. Dates can only be selected with the calendar
+- Some colors in Figma didn't match the tailwind theme - eg `#E9E9E9` for the input box border, so I used [Find the nearest tailwind colour](https://find-nearest-tailwind-colour.netlify.app/) to keep the designs consistent with the spec to use Tailwind
+- Disallowed typing in the date button area to avoid all the formatting edge cases. Dates can only be selected with the calendar
 - Invalid dates can be passed into params. eg toDate before fromDate
 - If only toDate passed to params, no error message displayed

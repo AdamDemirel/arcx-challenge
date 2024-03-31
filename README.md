@@ -58,12 +58,10 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Fix console errors/warnings
 - [x] Fix TODOs
 
-# Noted Exclusions
-- Support for dark color scheme
-- Support for legacy browsers
-- Disallowed typing in the date button area to avoid all the formatting edge cases. Dates can only be selected with the calendar
-- Invalid dates can be passed into params. eg toDate before fromDate
-- If only toDate passed to params, no error message
-- Can pass in a fromDate to params earlier than today, no error message
-- Ignored date localisation
-- No hover states on calendar
+# Notes
+- Didn't add support for dark color scheme, legacy browsers or date localisation
+- Aware that invalid dates can be passed into params. eg toDate before fromDate
+- Aware that if only toDate passed to params, no error message
+- Aware that you can pass in a fromDate to params earlier than today, no error message
+- Excluded hover states on calendar
+- The designs were missing selected ranges for months/year view so I made my best judgement

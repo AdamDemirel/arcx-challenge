@@ -1,11 +1,21 @@
 import Image from 'next/image'
 
-const NextArrow = () => (
-  <Image src='/arrow.svg' alt='next arrow' width={16} height={16} style={{ transform: 'rotate(180deg)'}} />
-)
+type ArrowProps = { direction?: "prev" | "next"}
 
-const PrevArrow = () => (
-  <Image src='/arrow.svg' alt='prev arrow' width={16} height={16}  />
-)
+const Arrow: React.FC<ArrowProps> = ({ direction = "prev" }) => {
+  return (
+    <Image
+      src='/arrow.svg'
+      alt={`${direction} arrow`}
+      width={16}
+      height={16}
+      style={direction === "next" ? { transform: 'rotate(180deg)'} : {}}
+    />
+  )
+}
+
+const NextArrow: React.FC = () => <Arrow direction='next' />
+
+const PrevArrow: React.FC = () => <Arrow />
 
 export { NextArrow, PrevArrow }

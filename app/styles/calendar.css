@@ -51,7 +51,6 @@
   @apply text-arcx-gray-450;
 }
 
-
 /* Tile for day, month, and year */
 .react-calendar__tile {
   @apply text-xs leading-normal;
@@ -184,7 +183,7 @@
     @apply bg-white;
   }
 
-   /* The background of the hovered range end */
+  /* The background of the hovered range end */
   &.react-calendar__tile--hoverEnd {
     @apply bg-arcx-purple-100 rounded-e-2xl;
   }
@@ -200,4 +199,12 @@
   &.react-calendar__tile--rangeEnd {
     @apply bg-arcx-purple-500 text-white;
   }
+}
+
+/* Adds a custom calendar icon for the date input as per spec */
+.custom-date-icon {
+  @apply bg-[length:16px] bg-no-repeat pr-8;
+
+  background-image: url('/calendar.svg');
+  background-position: calc(100% - 12px) center;
 }

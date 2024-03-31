@@ -35,7 +35,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 - [x] Connect and deploy to vercel via CICD
 
 ## Design
-- [ ] Use only tailwind for styling
+- [x] Use only tailwind for styling
 - [x] Style the page layout as per figma
 - [x] Style the button input as per figma
   - [x] Ensure the input is a button with a hand displayed when hovering (dev mode comment)
@@ -51,10 +51,9 @@ This project addresses the criteria in the lead frontend engineering technical c
 ## QA
 - [ ] Double check all stylistic changes - colors, bgColors, spacing, fontSizes, opacity, layouts, etc
 - [ ] Try to break and find edge cases in functionality
-- [ ] Make sure necessary types are in place
+- [x] Make sure necessary types are in place
 - [ ] Decouple any mixed concerns and decompose complex components + hook logic
 - [ ] Comment any necessary code
-- [ ] If fromDate in params is before today, display error
 - [x] If params are set and no state values synced yet, display loader on button
 - [ ] Fix console errors/warnings
 - [ ] Fix TODOs
@@ -64,6 +63,7 @@ This project addresses the criteria in the lead frontend engineering technical c
 - Support for legacy browsers
 - Disallowed typing in the date button area to avoid all the formatting edge cases. Dates can only be selected with the calendar
 - Invalid dates can be passed into params. eg toDate before fromDate
-- If only toDate passed to params, no error message displayed
+- If only toDate passed to params, no error message
+- Can pass in a fromDate to params earlier than today, no error message
 - Ignored date localisation
 - No hover states on calendar

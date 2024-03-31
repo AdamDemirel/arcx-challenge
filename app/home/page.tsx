@@ -8,10 +8,10 @@ import { NextArrow, PrevArrow } from "./Arrows"
 import "../styles/calendar.css"
 
 const labels = {
-  inputLabel: 'Time Period',
-}
+  btnLabel: 'Time Period',
+} as const
 
-const Home = () => {
+const Home: React.FC = () => {
   const {
     showCalendar,
     formattedBtnDate,
@@ -25,19 +25,18 @@ const Home = () => {
   } = useCalendar()
 
   return (
-    <main className={styles.container}>
-      <div className={styles.formWrapper}>
-        <div className={styles.form}>
-          <p className={styles.dateLabel}>
-            {labels.inputLabel}
+    <main className={styles.pageWrapper}>
+      <div className={styles.timePeriodWrapperOuter}>
+        <div className={styles.timePeriodWrapperInner}>
+          <p className={styles.btnLabel}>
+            {labels.btnLabel}
           </p>
           <div
-            className={styles.btnWrapper(showCalendar)}
+            className={styles.btnWrapper({ showCalendar })}
           >
             <button
-              className={styles.dateBtn({ hasDate: !!formattedBtnDate })}
+              className={`custom-date-icon ${styles.dateBtn({ hasDate: !!formattedBtnDate })}`}
               onClick={toggleCalendar}
-              style={styles.customDateIcon}
             >
               {isLoading ? <Spinner /> : formattedBtnDate || 'from - to'}
             </button>

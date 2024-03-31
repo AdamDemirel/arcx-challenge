@@ -106,7 +106,7 @@
 }
 
 .react-calendar__month-view__days__day abbr {
-  @apply block w-8 h-8 py-0 px-2 flex items-center justify-center;
+  @apply block h-8 py-0 px-2 flex items-center justify-center;
 }
 
 /* Adds gap between month and year tiles */

@@ -50,13 +50,13 @@ This project addresses the criteria in the lead frontend engineering technical c
 
 ## QA
 - [ ] Double check all stylistic changes - colors, bgColors, spacing, fontSizes, opacity, layouts, etc
-- [ ] Try to break and find edge cases in functionality
+- [x] Try to break and find edge cases in functionality
 - [x] Make sure necessary types are in place
-- [ ] Decouple any mixed concerns and decompose complex components + hook logic
-- [ ] Comment any necessary code
+- [x] Decouple any mixed concerns and decompose complex components + hook logic
+- [x] Comment any necessary code
 - [x] If params are set and no state values synced yet, display loader on button
-- [ ] Fix console errors/warnings
-- [ ] Fix TODOs
+- [x] Fix console errors/warnings
+- [x] Fix TODOs
 
 # Noted Exclusions
 - Support for dark color scheme

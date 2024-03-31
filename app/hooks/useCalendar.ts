@@ -86,7 +86,6 @@ const useCalendar = () => {
 
   // Reads the values from searchParams and syncs to btn on first load
   useEffect(() => {
-    // TODO: make sure the date string params are in the accepted format
     const newDates: DateValue = [null, null]
 
     if (fromDateParam) {

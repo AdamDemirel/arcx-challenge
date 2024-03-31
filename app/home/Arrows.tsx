@@ -10,6 +10,7 @@ const Arrow: React.FC<ArrowProps> = ({ direction = "prev" }) => {
       width={16}
       height={16}
       style={direction === "next" ? { transform: 'rotate(180deg)'} : {}}
+      className='w-4 h-4'
     />
   )
 }

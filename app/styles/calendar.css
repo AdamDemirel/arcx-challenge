@@ -43,6 +43,10 @@
   abbr {
     @apply no-underline;
   }
+
+  .react-calendar__month-view__weekdays__weekday {
+    @apply p-2;
+  }
 }
 
 /* The neighbouring day/mo/year tiles */

@@ -46,10 +46,10 @@ This project addresses the criteria in the lead frontend engineering technical c
   - [x] out of range dates
 - [x] Style the year selector as per figma
 - [x] Style the month selector as per figma
-- [ ] Add delight to calendar - ie transitions/motion on date selection, calendar popup, and page load
+- [~] Add delight to calendar - ie transitions/motion on date selection, calendar popup, and page load
 
 ## QA
-- [ ] Double check all stylistic changes - colors, bgColors, spacing, fontSizes, opacity, layouts, etc
+- [x] Double check all stylistic changes - colors, bgColors, spacing, fontSizes, opacity, layouts, etc
 - [x] Try to break and find edge cases in functionality
 - [x] Make sure necessary types are in place
 - [x] Decouple any mixed concerns and decompose complex components + hook logic

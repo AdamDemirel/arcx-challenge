@@ -157,19 +157,19 @@
   /* If the tile is the first of the selected range */
   &.react-calendar__tile--rangeStart:not(.react-calendar__tile--rangeBothEnds):enabled {
     @apply rounded-s-2xl;
+  }
 
-    abbr {
-      @apply bg-arcx-purple-500 text-white rounded-2xl;
-    }
+  &.react-calendar__tile--rangeStart:not(.react-calendar__tile--rangeBothEnds):enabled abbr {
+    @apply bg-arcx-purple-500 text-white rounded-2xl;
   }
 
   /* If the tile is the end of the selected range */
-  &.react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeBothEnds) {
+  &.react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeBothEnds):enabled {
     @apply rounded-e-2xl;
+  }
 
-    abbr {
-      @apply bg-arcx-purple-500 text-white rounded-2xl;
-    }
+  &.react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeBothEnds):enabled abbr {
+    @apply bg-arcx-purple-500 text-white rounded-2xl;
   }
 
   /* If the title is in selected or hovered range */

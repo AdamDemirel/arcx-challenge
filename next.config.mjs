@@ -12,6 +12,7 @@ const nextConfig = {
   },
   // Disables unecessary performance optimization for challenge
   // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+  // Prevents needing to wrap with Suspense
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },

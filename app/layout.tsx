@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
+
+// import 'react-calendar/dist/Calendar.css'
+import "./styles/globals.css"
 
 const inter = Inter({
   weight: ['400', '500', '700'],

@@ -6,14 +6,15 @@ This project addresses the criteria in the lead frontend engineering technical c
 
 # Project Setup Steps
 1. Clone the repo
-2. Run the dev server with `npm run dev`. Runs at [http://localhost:3000](http://localhost:3000)
+2. Run `npm install`
+3. Run the dev server with `npm run dev`. Runs at [http://localhost:3000](http://localhost:3000)
 
 # Libraries / Tools
 - [Next.js](https://nextjs.org/) for boilerplate code structure and React setup
 - [tailwindcss](https://tailwindcss.com/) for styling via helper classes
 - [react-calendar](https://www.npmjs.com/package/react-calendar) for react calendar UI
 - [date-fns](https://date-fns.org/) for date utilities
-- [headlessui](https://headlessui.com/) for transitions
+- ~~[headlessui](https://headlessui.com/) for transitions~~
 
 # Requirements / Steps Undertaken
 
@@ -61,7 +62,6 @@ This project addresses the criteria in the lead frontend engineering technical c
 # Noted Exclusions
 - Support for dark color scheme
 - Support for legacy browsers
-- Some colors in Figma didn't match the tailwind theme - eg `#E9E9E9` for the input box border, so I used [Find the nearest tailwind colour](https://find-nearest-tailwind-colour.netlify.app/) to keep the designs consistent with the spec to use Tailwind
 - Disallowed typing in the date button area to avoid all the formatting edge cases. Dates can only be selected with the calendar
 - Invalid dates can be passed into params. eg toDate before fromDate
 - If only toDate passed to params, no error message displayed

@@ -1,0 +1,203 @@
+/* https://github.com/wojtekmaj/react-calendar/blob/main/packages/react-calendar/src/Calendar.css */
+
+/*
+  Custom styling overrides for react-calendar popup
+  utilising the tailwind tokens. see
+  https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes
+*/
+
+/* Whole calendar container */
+.react-calendar {
+  @apply bg-white pt-2 pb-4 px-4 border border-arcx-gray-300 rounded-lg w-64 absolute top-24 opacity-0 animate-fadein right-1/2 translate-x-2/4;
+}
+
+.react-calendar:has(.react-calendar__year-view),
+.react-calendar:has(.react-calendar__decade-view) {
+  @apply w-[270px];
+}
+
+.react-calendar button:enabled:hover {
+  @apply cursor-pointer;
+}
+
+.react-calendar__navigation {
+  @apply flex h-auto p-2 mb-2;
+}
+
+/* Nav arrows */
+.react-calendar__navigation button img {
+  img {
+    @apply w-4 h-4;
+  }
+}
+
+/* Hide arrows if disabled */
+.react-calendar__navigation__arrow:disabled {
+  @apply hidden;
+}
+
+/* Sun-mon labels */
+.react-calendar__month-view__weekdays {
+  @apply text-xs text-center text-arcx-gray-600 font-medium;
+
+  abbr {
+    @apply no-underline;
+  }
+}
+
+/* The neighbouring day/mo/year tiles */
+.react-calendar__month-view__days__day--neighboringMonth,
+.react-calendar__decade-view__years__year--neighboringDecade {
+  @apply text-arcx-gray-450;
+}
+
+
+/* Tile for day, month, and year */
+.react-calendar__tile {
+  @apply text-xs leading-normal;
+}
+
+/* Tiles outside the range */
+.react-calendar__tile:disabled {
+  @apply bg-arcx-gray-200;
+}
+
+/* Order of below 2 rules rearranges nav arrows to be next to eachother on the right of the label */
+.react-calendar__navigation__prev-button {
+  @apply order-1;
+}
+
+.react-calendar__navigation__next-button {
+  @apply order-2;
+}
+
+/* The label which displays at the top of the cal */
+.react-calendar__navigation__label {
+  @apply text-sm font-medium text-arcx-gray-100 mr-auto flex items-center;
+
+  /* Adds arrow to the right of nav label */
+  &::after {
+    content: url(/arrow.svg);
+
+    @apply w-4 h-4 rotate-[270deg] ml-2;
+  }
+
+  /* For the decade drill-down */
+  &:disabled {
+    @apply cursor-not-allowed;
+  }
+}
+
+/* Todays tile */
+.react-calendar__tile--now {
+  @apply bg-inherit text-inherit;
+
+  &:hover {
+    @apply bg-inherit text-inherit;
+  }
+}
+
+/* Day tile */
+.react-calendar__month-view .react-calendar__tile abbr {
+  @apply p-2;
+}
+
+.react-calendar__month-view__days__day abbr {
+  @apply block w-8 h-8 py-0 px-2 flex items-center justify-center;
+}
+
+/* Adds gap between month and year tiles */
+.react-calendar__year-view__months,
+.react-calendar__decade-view__years {
+  @apply gap-x-3 gap-y-px;
+}
+
+/* Month and year tile */
+.react-calendar__year-view__months__month,
+.react-calendar__decade-view__years__year {
+  @apply py-2 rounded-2xl flex-none !important;
+  flex-basis: calc(100% / 3 - 12px / 3 * (3 - 1)) !important;
+}
+
+/* The disabled years and months */
+.react-calendar__decade-view__years__year:disabled,
+.react-calendar__year-view__months__month:disabled {
+  @apply bg-white text-arcx-gray-600 cursor-not-allowed;
+}
+
+/* The selected year and month */
+.react-calendar__year-view__months__month.react-calendar__tile--hasActive,
+.react-calendar__decade-view__years__year.react-calendar__tile--hasActive {
+  @apply bg-arcx-purple-500 text-white;
+}
+
+/* Hovering a tile */
+.react-calendar__month-view__days__day.react-calendar__tile:enabled:hover abbr,
+.react-calendar__month-view__days__day.react-calendar__tile:enabled:focus abbr,
+.react-calendar__year-view__months__month.react-calendar__tile:enabled:hover,
+.react-calendar__year-view__months__month.react-calendar__tile:enabled:focus,
+.react-calendar__decade-view__years__year.react-calendar__tile:enabled:hover,
+.react-calendar__decade-view__years__year.react-calendar__tile:enabled:focus {
+  @apply bg-arcx-purple-500 text-white rounded-2xl;
+}
+
+.react-calendar__month-view__days__day {
+  &.react-calendar__tile--rangeBothEnds abbr {
+    @apply bg-arcx-purple-500 text-white rounded-2xl;
+  }
+
+  /* The background of the selected or hovered range start */
+  &.react-calendar__tile--hoverStart:enabled {
+    @apply bg-arcx-purple-100 rounded-s-2xl;
+  }
+
+  /* If the tile is the first of the selected range */
+  &.react-calendar__tile--rangeStart:not(.react-calendar__tile--rangeBothEnds):enabled {
+    @apply rounded-s-2xl;
+
+    abbr {
+      @apply bg-arcx-purple-500 text-white rounded-2xl;
+    }
+  }
+
+  /* If the tile is the end of the selected range */
+  &.react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeBothEnds) {
+    @apply rounded-e-2xl;
+
+    abbr {
+      @apply bg-arcx-purple-500 text-white rounded-2xl;
+    }
+  }
+
+  /* If the title is in selected or hovered range */
+  &.react-calendar__tile--hover:enabled,
+  &.react-calendar__tile--range:enabled {
+    @apply bg-arcx-purple-100;
+  }
+
+  /* If it's the only tile selected */
+  &.react-calendar__tile--rangeBothEnds {
+    @apply bg-arcx-purple-100;
+  }
+
+  &.react-calendar__tile--rangeBothEnds:not(.react-calendar__tile--hover) {
+    @apply bg-white;
+  }
+
+   /* The background of the hovered range end */
+  &.react-calendar__tile--hoverEnd {
+    @apply bg-arcx-purple-100 rounded-e-2xl;
+  }
+}
+
+.react-calendar__year-view__months__month,
+.react-calendar__decade-view__years__year {
+  &.react-calendar__tile--range {
+    @apply bg-arcx-purple-100 text-arcx-gray-600;
+  }
+
+  &.react-calendar__tile--rangeStart,
+  &.react-calendar__tile--rangeEnd {
+    @apply bg-arcx-purple-500 text-white;
+  }
+}

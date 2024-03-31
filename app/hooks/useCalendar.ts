@@ -3,9 +3,7 @@ import { useMemo, useState, useEffect, useRef, useCallback } from 'react'
 import { format } from 'date-fns/format'
 import { parse } from 'date-fns/parse'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-
-// Toggle this to enable debug logs
-const DEBUG = true
+import type { CalendarProps } from "react-calendar"
 
 // See https://date-fns.org/docs/Getting-Started
 const BTN_DATE_FORMAT = 'MMM do yyyy'
@@ -24,7 +22,7 @@ const useCalendar = () => {
   const toDateParam = searchParams.get(PARAMS.TO)
 
   const [showCalendar, setShowCalendar] = useState<boolean>(false)
-  const [selectedDates, setSelectedDates] = useState<DateValue>([null, null])
+  const [selectedDates, setSelectedDates] = useState<(null|Date)[]>([null, null])
   const [isLoading, setIsLoading] = useState(!!fromDateParam || !!toDateParam)
 
   const calendarRef = useRef(null)
@@ -77,10 +75,10 @@ const useCalendar = () => {
   const monthFormatter = useCallback((locale: any, date: any) => format(date, 'LLL'), [])
 
   // This mapping is needed since the calendar either accepts a single date value or an array of 2 full. breaks if array of 1 value and 1 null
-  const calendarValue = useMemo(() => {
+  const calendarValue: CalendarProps['value'] = useMemo(() => {
     if (nonNullDates?.length === 2) return selectedDates
     if (nonNullDates?.length === 1) return selectedDates?.[0]
-    return null
+    return undefined
   }, [nonNullDates, selectedDates])
 
   // Reads the values from searchParams and syncs to btn on first load
@@ -101,19 +99,6 @@ const useCalendar = () => {
     setSelectedDates(newDates)
     setIsLoading(false)
   }, [fromDateParam, toDateParam])
-
-  // Logs all state and variables for debugging
-  useEffect(() => {
-    if (!DEBUG) return
-    console.log('showCalendar', showCalendar)
-    console.log('selectedDates', selectedDates)
-    console.log('btnFormattedStartDate', btnFormattedStartDate)
-    console.log('btnFormattedEndDate', btnFormattedEndDate)
-    console.log('formattedBtnDate', formattedBtnDate)
-    console.log('clickedOutside', clickedOutside)
-    console.log('fromDateParam', fromDateParam)
-    console.log('toDateParam', toDateParam)
-  }, [btnFormattedEndDate, btnFormattedStartDate, selectedDates, showCalendar, formattedBtnDate, clickedOutside, fromDateParam, toDateParam])
 
   // closes the calendar if its open, and the user clicks outside,
   useEffect(() => {
